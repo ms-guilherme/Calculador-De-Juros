@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invest with goaheaduber.com</title>
+    <!--
+     .Em operações de juros compostos, há os seguintes dados;
+      ->Capital (C) (Dinheiro/capital inicial)
+      ->Tempo (t)
+      ->Taxa (i)
+      ->Juros (J)
+      ->Montante (M)
+     .A taxa precisa estar na mesma medida que o tempo
+     .Em juros compostos, a cada periodo de tempo, o capital usado na conta já tera incluso a taxa,
+    então, o valor ganho a cada ano por exemplo será sempre diferente.
+     .Fórmula: M = C(1+i) ** t
+    -->
+
+</head>
+<body>
+<!--Códigos HTML-->
+ <header id="_header">
+  <section id="_s1">
+  <p id="_p1">New flip car program!</p>
+  <p id="_p2">Invest to own white</p>
+  <a id="_link" href="#" onclick="_link();" onmouseenter="linkenter()" onmouseout="linkout()">GoAheadUber</a>
+   </section>
+ </header>
+ <section id="_s2">
+  <input id="capital" type="number" min="1">
+  <input id="InpCapital" type="button" value="Value of your car" onmouseover="infsEnter1()" onmouseout="infsOut1()" onclick="infsClick1()"> <br>
+  <input id="tempo" type="number" min="1">
+  <input id="InpTempo" type="button" value="Lenght of investiment (Months)" onmouseover="infsEnter2()" onmouseout="infsOut2()" onclick="infsClick2()">
+  <input id="intervalo" type="number" min="1">
+  <input id="InpIntervalo" type="button" value="Flip Car break (Months)"> <br>
+  <select id ="taxa">
+    <option></option>
+    <option value="10">10%</option>
+    <option value="20">20%</option>
+    <option value="30">30%</option>
+    <option value="40">40%</option>
+    <option value="50">50%</option>
+    <option value="60">60%</option>
+    <option value="70">70%</option>
+    <option value="80">80%</option>
+    <option value="90">90%</option>
+    <option value="100">100%</option>
+    <option value="0" onclick="taxa_pers()">?%</option>
+  </select>
+  <input id="taxa_pers" type="number" min = "1" max="200" hidden>
+  <input id="InpTaxa" type="button" value="%Profit margin" onmouseover="infsEnter3()" onmouseout="infsOut3()" onclick="infsClick3()"> <br>
+  <p id="resp"></p>
+  <p id="resp2"></p>
+  <input id= "RespBot" type="submit" value="Send" onmouseover="respEnter()" onmouseout="respOut()" onclick="calcular()">
+ </section>
+<!--Códigos HTML-->
+
+<style>
+body { background-color: black; }
+
+header#_header {
+ font: normal 19pt Arial;
+ text-align: center;
+}
+p#_p2 {
+ font-size: 17pt;
+}
+a#_link {
+ font-family: 'Archivo Narrow', sans-serif;
+ font-size: 20px;
+}
+
+section#_s1 {
+ background-color: #CCA52C; /*Ou rgba(200, 255, 0, 0.548)*/
+ color: white;
+ padding-bottom: 15pt;
+ padding: 1pt;
+ width: 290pt;
+ margin: auto;
+ box-shadow: 6px 6px 6px rgba(140, 160, 30, 0.699); /*Ou rgba(89, 114, 0, 0.548)*/
+ border-radius: 9pt; /*9pt*/
+}
+
+section#_s2 {
+ background-color: #CCA52C;
+
+ color: white;
+ padding: 12pt;
+ border-radius: 9pt;
+ width: 290pt;
+ margin-left: auto;
+ margin: auto;
+ margin-top: 16pt;
+ box-shadow: 10px 10px 10px rgba(129, 131, 0, 0.548);
+}
+
+input#RespBot {    /*Botão de enviar as respostas (submit)*/
+ margin-top: 3pt;
+ border-radius: 2pt;
+ border-color: rgba(113, 180, 107, 0.644);
+ color: rgb(58, 58, 121);
+ font-size: 14.5px;
+}
+
+input#capital {
+ width: 80pt;
+ color: rgb(58, 58, 121);
+ background-color: rgb(240, 255, 187);
+ margin-top: 13px;
+}
+input#InpCapital { /*Label do preenchimento de dados sobre o capital do cliente*/
+ background-color: transparent;
+ border-color: transparent;
+ border-radius: 20pt;
+ font-size: 18px;
+ color: rgb(58, 58, 121);
+}
+
+input#tempo {
+ width: 80pt;
+ margin-top: 2pt;
+ color: rgb(58, 58, 121);
+ background-color: rgb(240, 255, 187);
+ }
+input#InpTempo {
+ background-color: transparent;
+ border-color: transparent;
+ border-radius: 20pt;
+ font-size: 18px;
+ color: rgb(58, 58, 121);
+}
+
+input#intervalo {
+  width: 80pt;
+ margin-top: 2pt;
+ color: rgb(58, 58, 121);
+ background-color: rgb(240, 255, 187);
+}
+input#InpIntervalo {
+ background-color: transparent;
+ border-color: transparent;
+ border-radius: 20pt;
+ font-size: 18px;
+ color: rgb(58, 58, 121);
+}
+
+select#taxa {
+ width: 115px;
+ margin-top: 2pt;
+ color: rgb(58, 58, 121);
+ background-color: rgb(240, 255, 187);
+ border-width: 2px;
+ border-color: rgb(31, 31, 31);
+}
+
+input#taxa_pers {
+ width: 115px;
+ margin-top: 2pt;
+ color: rgb(58, 58, 121);
+ background-color: rgb(240, 255, 187);
+ border-width: 2px;
+ border-color: rgb(31, 31, 31);
+}
+
+input#InpTaxa { /*Label do preenchimento de dados sobre o tempo que vai durar a taxa do cliente*/
+ background-color: transparent;
+ border-color: transparent;
+ border-radius: 20pt;
+ font-size: 18px;
+ color: rgb(58, 58, 121);
+}
+
+p#resp {
+ font: normal 13pt Arial;
+ color: white;
+}
+</style>
+
+<script>
+function _link() {
+  window.open('https://www.goaheaduber.com/')
+}
+
+function linkenter() {
+ var _link = document.getElementById("_link");
+ _link.style.color = "tomato";
+}
+function linkout() {
+ var _link = document.getElementById("_link");
+ _link.style.color = "";
+}
+
+
+function infsEnter1() {
+ var inpCapital = document.getElementById('InpCapital')
+ inpCapital.style.color = '#FEFEFE'
+}
+function infsOut1() {
+ var inpCapital = document.getElementById('InpCapital')
+ inpCapital.style.color = 'rgb(58, 58, 121)'
+}
+
+function infsEnter2() {
+ let inpTempo = document.getElementById('InpTempo')
+ inpTempo.style.color = '#FEFEFE'
+}
+function infsOut2() {
+ let inpTempo = document.getElementById('InpTempo')
+ inpTempo.style.color = 'rgb(58, 58, 121)'
+}
+
+function infsEnter3() {
+ let inpTaxa = document.getElementById('InpTaxa')
+ inpTaxa.style.color = '#FEFEFE'
+}
+function infsOut3() {
+ let inpTaxa = document.getElementById('InpTaxa')
+ inpTaxa.style.color = 'rgb(58, 58, 121)'
+}
+
+function respEnter() {
+ let RespBot = document.getElementById('RespBot')
+ RespBot.style.color = 'black'
+ RespBot.style.backgroundColor = '#9F9F9F' //'rgb(255, 154, 136)'
+ RespBot.style.borderColor = '##FBF295'
+ RespBot.style.borderRadius = '3pt'
+}
+function respOut() {
+ let RespBot = document.getElementById('RespBot')
+ RespBot.style.color = ''
+ RespBot.style.backgroundColor = ''
+ RespBot.style.borderColor = 'rgba(113, 180, 107, 0.644)'
+ RespBot.style.borderRadius = '0pt'
+}
+
+
+
+function calcular() {
+ var _c = document.getElementById('capital').value
+ var _t = document.getElementById('tempo').value
+ var _i = document.getElementById('taxa').value
+ var _int = document.getElementById('intervalo').value
+ _i.hidde
+ if (_int > 0) _periodo = _t/_int
+ var _m = _c * (1+_i/100)**_periodo;
+ var _j = _m - _c
+ var resposta = document.getElementById('resp')
+ var resposta2 = document.getElementById('resp2')
+   resposta.innerHTML = `Your compound interest is ${_j.toLocaleString('pt-BR',{style: 'currency', currency: 'USD'})}`
+   resposta2.innerHTML = `And its amount is ${_m.toLocaleString('pt-BR',{style: 'currency', currency: 'USD'})}`
+}
+</script>
+</body>
+
+<!--
+
+---------------------------------
+HTML:
+<select id="moeda">
+    <option value="$">USD $</option>
+    <option value="R$">BRL R$</option>
+</select>
+  <input id="InpMoeda" type="button" value="Coin 1$ = R$" onmouseover="infsEnter4()" onmouseout="infsOut4()" onclick="infsClick4()">
+  <input id="InpMoeda2" type="text" value=5,30 onmouseover="infsEnter5()" onmouseout="infsOut5()">
+
+-------------------------------------
+
+CSS:
+input#InpMoeda { /*Label do preenchimento de dados sobre o tempo que vai durar a taxa do cliente*/
+ background-color: transparent;
+ border-color: transparent;
+ border-radius: 20pt;
+ font-size: 18px;
+ color: rgb(58, 58, 121);
+ width: 88pt;
+}
+
+input#InpMoeda2 { /*Label do preenchimento de dados sobre o tempo que vai durar a taxa do
+  cliente*/
+ background-color: transparent;
+ border-color: transparent;
+ border-radius: 20pt;
+ font-size: 18px;
+ color: rgb(58, 58, 121);
+ width: 35pt;
+} */
+-----------------------------------
+
+JS:
+function infsEnter5() {
+ let inpMoeda2 = document.getElementById('InpMoeda2')
+ inpMoeda2.style.color = '#FEFEFE'
+}
+function infsOut5() {
+ let inpMoeda2 = document.getElementById('InpMoeda2')
+ inpMoeda2.style.color = 'rgb(58, 58, 121)'
+}
+
+ var moeda = document.getElementById('moeda').value
+
+ //Na function calcular()
+ switch (moeda) {
+  case "$" :
+   resposta.innerHTML = `Your compound interest is ${j.toLocaleString('pt-BR',{style: 'currency', currency: 'USD'})}`
+   resposta2.innerHTML = `And its amount is ${m.toLocaleString('pt-BR',{style: 'currency', currency: 'USD'})}`
+  break
+  case "R$" :
+   var real2 = document.getElementById('InpMoeda2').value.replace(",",".")
+   real = Number(real2)
+   var jR$ = j * real
+   var mR$ = m * real
+   resposta.innerHTML = `Your compound interest is ${jR$.toLocaleString('pt-BR',{style: 'currency', currency: 'BRL'})}`
+   resposta2.innerHTML = `And its amount is ${mR$.toLocaleString('pt-BR',{style: 'currency', currency: 'BRL'})}`
+  break
+  default : alert('Sentimos muito, houve um erro ao escolher a sua moeda')
+  }
+-->
+
+</html>
