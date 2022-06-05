@@ -24,15 +24,15 @@
  <header id="_header">
   <section id="_s1">
   <p id="_p1">New Flip Car program!</p>
-  <p id="_p2">Invest to own white</p>
+  <p id="_p2">Invest to your own</p>
   <a id="_link" href="#" onclick="_link();" onmouseenter="linkenter()" onmouseout="linkout()">GoAheadUber</a>
    </section>
  </header>
  <section id="_s2">
   <input id="capital" type="number" min="1">
-  <input id="InpCapital" type="button" value="Value of your car" onmouseover="infsEnter1()" onmouseout="infsOut1()" onclick="infsClick1()"> <br>
+  <input id="InpCapital" type="button" value="Car value" onmouseover="infsEnter1()" onmouseout="infsOut1()" onclick="infsClick1()"> <br>
   <input id="intervalo" type="number" min="1">
-  <input id="InpIntervalo" type="button" value="Flip Car break (Months)" onmouseover="infsEnter2()" onmouseout="infsOut2()" onclick="infsClick2()"> <br>
+  <input id="InpIntervalo" type="button" value="Flips per year" onmouseover="infsEnter2()" onmouseout="infsOut2()" onclick="infsClick2()"> <br>
   <select id ="taxa">
     <option></option>
     <option value="10">10%</option>
@@ -48,7 +48,6 @@
   </select>
   <input id="taxa_pers" type="number" min = "1" max="200" hidden>
   <input id="InpTaxa" type="button" value="%Profit margin" onmouseover="infsEnter3()" onmouseout="infsOut3()" onclick="infsClick3()"> <br>
-  <p id="obs">*1 Year of contract</p>
   <p id="resp"></p>
   <p id="resp2"></p>
   <input id= "RespBot" type="submit" value="Send" onmouseover="respEnter()" onmouseout="respOut()" onclick="calcular()">
@@ -171,11 +170,6 @@ input#InpTaxa { /*Label do preenchimento de dados sobre o tempo que vai durar a 
  color: rgb(58, 58, 121);
 }
 
-p#obs {
-  font: italic 13px Arial;
-  color: rgb(43, 43, 43);
-}
-
 p#resp {
  font: normal 13pt Arial;
  color: white;
@@ -250,8 +244,8 @@ function calcular() {
  var _j = _m - _c
  var resposta = document.getElementById('resp')
  var resposta2 = document.getElementById('resp2')
-   resposta.innerHTML = `Your compound interest is ${_j.toLocaleString('pt-BR',{style: 'currency', currency: 'USD'})}`
-   resposta2.innerHTML = `And its amount is ${_m.toLocaleString('pt-BR',{style: 'currency', currency: 'USD'})}`
+   resposta.innerHTML = `Your profit is ${_j.toLocaleString('pt-BR',{style: 'currency', currency: 'USD'})}`
+   resposta2.innerHTML = `Your patrimony now is ${_m.toLocaleString('pt-BR',{style: 'currency', currency: 'USD'})}`
 }
 </script>
 </body>
