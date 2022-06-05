@@ -23,7 +23,7 @@
 <!--Códigos HTML-->
  <header id="_header">
   <section id="_s1">
-  <p id="_p1">New flip car program!</p>
+  <p id="_p1">New Flip Car program!</p>
   <p id="_p2">Invest to own white</p>
   <a id="_link" href="#" onclick="_link();" onmouseenter="linkenter()" onmouseout="linkout()">GoAheadUber</a>
    </section>
@@ -31,10 +31,8 @@
  <section id="_s2">
   <input id="capital" type="number" min="1">
   <input id="InpCapital" type="button" value="Value of your car" onmouseover="infsEnter1()" onmouseout="infsOut1()" onclick="infsClick1()"> <br>
-  <input id="tempo" type="number" min="1">
-  <input id="InpTempo" type="button" value="Lenght of investiment (Months)" onmouseover="infsEnter2()" onmouseout="infsOut2()" onclick="infsClick2()">
   <input id="intervalo" type="number" min="1">
-  <input id="InpIntervalo" type="button" value="Flip Car break (Months)"> <br>
+  <input id="InpIntervalo" type="button" value="Flip Car break (Months)" onmouseover="infsEnter2()" onmouseout="infsOut2()" onclick="infsClick2()"> <br>
   <select id ="taxa">
     <option></option>
     <option value="10">10%</option>
@@ -47,10 +45,10 @@
     <option value="80">80%</option>
     <option value="90">90%</option>
     <option value="100">100%</option>
-    <option value="0" onclick="taxa_pers()">?%</option>
   </select>
   <input id="taxa_pers" type="number" min = "1" max="200" hidden>
   <input id="InpTaxa" type="button" value="%Profit margin" onmouseover="infsEnter3()" onmouseout="infsOut3()" onclick="infsClick3()"> <br>
+  <p id="obs">*1 Year of contract</p>
   <p id="resp"></p>
   <p id="resp2"></p>
   <input id= "RespBot" type="submit" value="Send" onmouseover="respEnter()" onmouseout="respOut()" onclick="calcular()">
@@ -58,7 +56,7 @@
 <!--Códigos HTML-->
 
 <style>
-body { background-color: black; }
+body { background-color:black; }
 
 header#_header {
  font: normal 19pt Arial;
@@ -173,6 +171,11 @@ input#InpTaxa { /*Label do preenchimento de dados sobre o tempo que vai durar a 
  color: rgb(58, 58, 121);
 }
 
+p#obs {
+  font: italic 13px Arial;
+  color: rgb(43, 43, 43);
+}
+
 p#resp {
  font: normal 13pt Arial;
  color: white;
@@ -204,11 +207,11 @@ function infsOut1() {
 }
 
 function infsEnter2() {
- let inpTempo = document.getElementById('InpTempo')
+ let inpTempo = document.getElementById('InpIntervalo')
  inpTempo.style.color = '#FEFEFE'
 }
 function infsOut2() {
- let inpTempo = document.getElementById('InpTempo')
+ let inpTempo = document.getElementById('InpIntervalo')
  inpTempo.style.color = 'rgb(58, 58, 121)'
 }
 
@@ -240,12 +243,10 @@ function respOut() {
 
 function calcular() {
  var _c = document.getElementById('capital').value
- var _t = document.getElementById('tempo').value
  var _i = document.getElementById('taxa').value
- var _int = document.getElementById('intervalo').value
+ var _int = document.getElementById('intervalo').value //tempo (t)
  _i.hidde
- if (_int > 0) _periodo = _t/_int
- var _m = _c * (1+_i/100)**_periodo;
+ var _m = _c * (1+_i/100)**_int;
  var _j = _m - _c
  var resposta = document.getElementById('resp')
  var resposta2 = document.getElementById('resp2')
