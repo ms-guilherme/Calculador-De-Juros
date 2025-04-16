@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invest with goaheaduber.com</title>
+    <title>Invest and Drive with goaheaduber.com</title>
     <!--
      .Em operações de juros compostos, há os seguintes dados;
       ->Capital (C) (Dinheiro/capital inicial)
@@ -23,18 +23,31 @@
 <!--Códigos HTML-->
  <header id="_header">
   <section id="_s1">
-  <p id="_p1">New flip car program!</p>
-  <p id="_p2">Invest to own white</p>
-  <a id="_link" href="#" onclick="_link();" onmouseenter="linkenter()" onmouseout="linkout()">GoAheadUber</a>
+  <p id="_p1">NEW FLIP CAR PROGRAM!</p>
+  <p id="_p2">INVEST AND DRIVE</p>
+  <p>CARMAR MOTORS</p>
+  <!-- <a id="_link" href="#" onclick="_link();" onmouseenter="linkenter()" onmouseout="linkout()">Www.goaheaduber.com</a> -->
    </section>
  </header>
  <section id="_s2">
   <input id="capital" type="number" min="1">
-  <input id="InpCapital" type="button" value="Value of your car" onmouseover="infsEnter1()" onmouseout="infsOut1()" onclick="infsClick1()"> <br>
-  <input id="tempo" type="number" min="1">
-  <input id="InpTempo" type="button" value="Lenght of investiment (Months)" onmouseover="infsEnter2()" onmouseout="infsOut2()" onclick="infsClick2()">
-  <input id="intervalo" type="number" min="1">
-  <input id="InpIntervalo" type="button" value="Flip Car break (Months)"> <br>
+  <input id="InpCapital" type="button" value="Car/House value" onmouseover="infsEnter1()" onmouseout="infsOut1()" onclick="infsClick1()"> <br>
+   <select id ="intervalo">
+    <option></option>
+    <option value="1">1 Sale per year</option>
+    <option value="2">2 Sales per year</option>
+    <option value="3">3 Sales per year</option>
+    <option value="4">4 Sales per year</option>
+    <option value="5">5 Sales per year</option>
+    <option value="6">6 Sales per year</option>
+    <option value="7">7 Sales per year</option>
+    <option value="8">8 Sales per year</option>
+    <option value="9">9 Sales per year</option>
+    <option value="10">10 Sales per year</option>
+    <option value="11">11 Sales per year</option>
+    <option value="12">12 Sales per year</option>
+  </select>
+  <input id="InpIntervalo" type="button" value="Flips per year" onmouseover="infsEnter2()" onmouseout="infsOut2()" onclick="infsClick2()"> <br>
   <select id ="taxa">
     <option></option>
     <option value="10">10%</option>
@@ -47,18 +60,18 @@
     <option value="80">80%</option>
     <option value="90">90%</option>
     <option value="100">100%</option>
-    <option value="0" onclick="taxa_pers()">?%</option>
   </select>
   <input id="taxa_pers" type="number" min = "1" max="200" hidden>
   <input id="InpTaxa" type="button" value="%Profit margin" onmouseover="infsEnter3()" onmouseout="infsOut3()" onclick="infsClick3()"> <br>
   <p id="resp"></p>
   <p id="resp2"></p>
-  <input id= "RespBot" type="submit" value="Send" onmouseover="respEnter()" onmouseout="respOut()" onclick="calcular()">
+  <input id= "RespBot" type="submit" value="Calculate" onmouseover="respEnter()" onmouseout="respOut()" onclick="calcular()">
  </section>
 <!--Códigos HTML-->
 
 <style>
-body { background-color: black; }
+body { background-color:black; }
+/*Códigos CSS*/
 
 header#_header {
  font: normal 19pt Arial;
@@ -76,7 +89,7 @@ section#_s1 {
  background-color: #CCA52C; /*Ou rgba(200, 255, 0, 0.548)*/
  color: white;
  padding-bottom: 15pt;
- padding: 1pt;
+ padding: 5pt;
  width: 290pt;
  margin: auto;
  margin-top: 20px;
@@ -88,7 +101,7 @@ section#_s2 {
  background-color: #CCA52C;
 
  color: white;
- padding: 12pt;
+ padding: 18pt;
  border-radius: 9pt;
  width: 290pt;
  margin-left: auto;
@@ -106,11 +119,23 @@ input#RespBot {    /*Botão de enviar as respostas (submit)*/
 }
 
 input#capital {
- width: 80pt;
+ width: 115px;
+ margin-top: 2pt;
  color: rgb(58, 58, 121);
  background-color: rgb(240, 255, 187);
- margin-top: 13px;
+ border-width: 2px;
+ border-color: rgb(31, 31, 31);
 }
+select#intervalo {
+ width: 115px;
+ margin-top: 2pt;
+ color: rgb(58, 58, 121);
+ background-color: rgb(240, 255, 187);
+ border-width: 2px;
+ border-color: rgb(31, 31, 31);
+ font-size: 16px;
+}
+
 input#InpCapital { /*Label do preenchimento de dados sobre o capital do cliente*/
  background-color: transparent;
  border-color: transparent;
@@ -174,12 +199,18 @@ input#InpTaxa { /*Label do preenchimento de dados sobre o tempo que vai durar a 
 }
 
 p#resp {
- font: normal 13pt Arial;
+ font: normal 14.5pt Arial;
  color: white;
 }
+p#resp2 {
+ font: normal 14pt Arial;
+ color: white;
+}
+/*Códigos CSS*/
 </style>
 
 <script>
+//Códigos JS//
 function _link() {
   window.open('https://www.goaheaduber.com/')
 }
@@ -204,11 +235,11 @@ function infsOut1() {
 }
 
 function infsEnter2() {
- let inpTempo = document.getElementById('InpTempo')
+ let inpTempo = document.getElementById('InpIntervalo')
  inpTempo.style.color = '#FEFEFE'
 }
 function infsOut2() {
- let inpTempo = document.getElementById('InpTempo')
+ let inpTempo = document.getElementById('InpIntervalo')
  inpTempo.style.color = 'rgb(58, 58, 121)'
 }
 
@@ -240,83 +271,18 @@ function respOut() {
 
 function calcular() {
  var _c = document.getElementById('capital').value
- var _t = document.getElementById('tempo').value
  var _i = document.getElementById('taxa').value
- var _int = document.getElementById('intervalo').value
+ var _int = document.getElementById('intervalo').value //tempo (t)
  _i.hidde
- if (_int > 0) _periodo = _t/_int
- var _m = _c * (1+_i/100)**_periodo;
+ var _m = _c * (1+_i/100)**_int;
  var _j = _m - _c
  var resposta = document.getElementById('resp')
  var resposta2 = document.getElementById('resp2')
-   resposta.innerHTML = `Your compound interest is ${_j.toLocaleString('pt-BR',{style: 'currency', currency: 'USD'})}`
-   resposta2.innerHTML = `And its amount is ${_m.toLocaleString('pt-BR',{style: 'currency', currency: 'USD'})}`
+   resposta.innerHTML = `Your Yearly Profit is ${_j.toLocaleString('pt-BR',{style: 'currency', currency: 'USD'})}`
+   resposta2.innerHTML = `And your Total Asset now is ${_m.toLocaleString('pt-BR',{style: 'currency', currency: 'USD'})}`
 }
+//Códigos JS//
 </script>
 </body>
-
-<!--
-
----------------------------------
-HTML Para Troca de Moeda:
-<select id="moeda">
-    <option value="$">USD $</option>
-    <option value="R$">BRL R$</option>
-</select>
-  <input id="InpMoeda" type="button" value="Coin 1$ = R$" onmouseover="infsEnter4()" onmouseout="infsOut4()" onclick="infsClick4()">
-  <input id="InpMoeda2" type="text" value=5,30 onmouseover="infsEnter5()" onmouseout="infsOut5()">
-
--------------------------------------
-
-CSS:
-input#InpMoeda { /*Label do preenchimento de dados sobre o tempo que vai durar a taxa do cliente*/
- background-color: transparent;
- border-color: transparent;
- border-radius: 20pt;
- font-size: 18px;
- color: rgb(58, 58, 121);
- width: 88pt;
-}
-
-input#InpMoeda2 { /*Label do preenchimento de dados sobre o tempo que vai durar a taxa do
-  cliente*/
- background-color: transparent;
- border-color: transparent;
- border-radius: 20pt;
- font-size: 18px;
- color: rgb(58, 58, 121);
- width: 35pt;
-} */
------------------------------------
-
-JS:
-function infsEnter5() {
- let inpMoeda2 = document.getElementById('InpMoeda2')
- inpMoeda2.style.color = '#FEFEFE'
-}
-function infsOut5() {
- let inpMoeda2 = document.getElementById('InpMoeda2')
- inpMoeda2.style.color = 'rgb(58, 58, 121)'
-}
-
- var moeda = document.getElementById('moeda').value
-
- //Na function calcular()
- switch (moeda) {
-  case "$" :
-   resposta.innerHTML = `Your compound interest is ${j.toLocaleString('pt-BR',{style: 'currency', currency: 'USD'})}`
-   resposta2.innerHTML = `And its amount is ${m.toLocaleString('pt-BR',{style: 'currency', currency: 'USD'})}`
-  break
-  case "R$" :
-   var real2 = document.getElementById('InpMoeda2').value.replace(",",".")
-   real = Number(real2)
-   var jR$ = j * real
-   var mR$ = m * real
-   resposta.innerHTML = `Your compound interest is ${jR$.toLocaleString('pt-BR',{style: 'currency', currency: 'BRL'})}`
-   resposta2.innerHTML = `And its amount is ${mR$.toLocaleString('pt-BR',{style: 'currency', currency: 'BRL'})}`
-  break
-  default : alert('Sentimos muito, houve um erro ao escolher a sua moeda')
-  }
--->
 
 </html>
