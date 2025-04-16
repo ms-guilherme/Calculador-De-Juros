@@ -31,8 +31,10 @@
  </header>
  <section id="_s2">
   <input id="capital" type="number" min="1">
-  <input id="InpCapital" type="button" value="Car/House value" onmouseover="infsEnter1()" onmouseout="infsOut1()" onclick="infsClick1()"> <br>
-   <select id ="intervalo">
+  <input class="info" id="InpCapital" type="button" value="Car/House value" onmouseover="infsEnter1()" onmouseout="infsOut1()" onclick="infsClick1()"> <br>
+  <input type="range" id="intervalo" min="1" max="32" value="1" oninput="atualizarValorRange()">
+  <span id="valorIntervalo">1</span>
+  <!-- <select id ="intervalo">
     <option></option>
     <option value="1">1 Sale per year</option>
     <option value="2">2 Sales per year</option>
@@ -46,8 +48,8 @@
     <option value="10">10 Sales per year</option>
     <option value="11">11 Sales per year</option>
     <option value="12">12 Sales per year</option>
-  </select>
-  <input id="InpIntervalo" type="button" value="Flips per year" onmouseover="infsEnter2()" onmouseout="infsOut2()" onclick="infsClick2()"> <br>
+  </select> -->
+  <input class="info" id="InpIntervalo" type="button" value="Flips per year" onmouseover="infsEnter2()" onmouseout="infsOut2()" onclick="infsClick2()"> <br>
   <select id ="taxa">
     <option></option>
     <option value="10">10%</option>
@@ -62,7 +64,7 @@
     <option value="100">100%</option>
   </select>
   <input id="taxa_pers" type="number" min = "1" max="200" hidden>
-  <input id="InpTaxa" type="button" value="%Profit margin" onmouseover="infsEnter3()" onmouseout="infsOut3()" onclick="infsClick3()"> <br>
+  <input class="info" id="InpTaxa" type="button" value="%Profit margin" onmouseover="infsEnter3()" onmouseout="infsOut3()" onclick="infsClick3()"> <br>
   <p id="resp"></p>
   <p id="resp2"></p>
   <input id= "RespBot" type="submit" value="Calculate" onmouseover="respEnter()" onmouseout="respOut()" onclick="calcular()">
@@ -70,7 +72,8 @@
 <!--Códigos HTML-->
 
 <style>
-body { background-color:black; }
+html { overflow-x: hidden;}
+body { background-color:black; overflow-x: hidden;}
 /*Códigos CSS*/
 
 header#_header {
@@ -86,32 +89,45 @@ a#_link {
 }
 
 section#_s1 {
+ width: 80%;
+ max-width: 500px;
+
  background-color: #CCA52C; /*Ou rgba(200, 255, 0, 0.548)*/
  color: white;
  padding-bottom: 15pt;
  padding: 5pt;
- width: 290pt;
  margin: auto;
  margin-top: 20px;
  box-shadow: 6px 6px 6px rgba(140, 160, 30, 0.699); /*Ou rgba(89, 114, 0, 0.548)*/
  border-radius: 9pt; /*9pt*/
+
+ display: flex;
+ flex-direction: column;
+}
+@media screen and (max-width: 335px) {
+  section#_s1 {font-size: 18px !important;}
 }
 
 section#_s2 {
+ width: 80%;
+ max-width: 500px;
  background-color: #CCA52C;
 
  color: white;
  padding: 18pt;
  border-radius: 9pt;
- width: 290pt;
  margin-left: auto;
  margin: auto;
  margin-top: 16pt;
  box-shadow: 10px 10px 10px rgba(129, 131, 0, 0.548);
 }
 
+.info {width: 130px;  }
+@media screen and (max-width: 375px) {.info {width: 200px;} .info{margin-bottom: 20px;}}
+
+
 input#RespBot {    /*Botão de enviar as respostas (submit)*/
- margin-top: 3pt;
+ margin-bottom: 0pt;
  border-radius: 2pt;
  border-color: rgba(113, 180, 107, 0.644);
  color: rgb(58, 58, 121);
@@ -119,14 +135,14 @@ input#RespBot {    /*Botão de enviar as respostas (submit)*/
 }
 
 input#capital {
- width: 115px;
+ width: 145px;
  margin-top: 2pt;
  color: rgb(58, 58, 121);
  background-color: rgb(240, 255, 187);
  border-width: 2px;
  border-color: rgb(31, 31, 31);
 }
-select#intervalo {
+/* select#intervalo {
  width: 115px;
  margin-top: 2pt;
  color: rgb(58, 58, 121);
@@ -134,7 +150,7 @@ select#intervalo {
  border-width: 2px;
  border-color: rgb(31, 31, 31);
  font-size: 16px;
-}
+} */
 
 input#InpCapital { /*Label do preenchimento de dados sobre o capital do cliente*/
  background-color: transparent;
@@ -144,12 +160,12 @@ input#InpCapital { /*Label do preenchimento de dados sobre o capital do cliente*
  color: rgb(58, 58, 121);
 }
 
-input#tempo {
+/* input#tempo {
  width: 80pt;
  margin-top: 2pt;
  color: rgb(58, 58, 121);
  background-color: rgb(240, 255, 187);
- }
+} */
 input#InpTempo {
  background-color: transparent;
  border-color: transparent;
@@ -159,11 +175,42 @@ input#InpTempo {
 }
 
 input#intervalo {
-  width: 80pt;
+ width: 87.5pt;
  margin-top: 2pt;
  color: rgb(58, 58, 121);
  background-color: rgb(240, 255, 187);
+ -webkit-appearance: none;
+ appearance: none;
+ border-radius: 1px;
+ border: solid 2px black;
 }
+input#intervalo::-webkit-slider-thumb {
+ width: 20px;
+ height: 20px;
+ background: rgb(58, 58, 121);
+ border-radius: 50%;
+ cursor: pointer;
+ -webkit-appearance: none;
+ appearance: none;
+ border-radius: 1px;
+ border: solid 2px black;
+}
+input#intervalo::-moz-range-thumb {
+ width: 20px;
+ height: 20px;
+ background: rgb(58, 58, 121);
+ border-radius: 50%;
+ cursor: pointer;
+ border-radius: 1px;
+ border: solid 2px black;
+}
+
+span#valorIntervalo {
+  font: normal 13pt Arial;
+  font-weight: 600;
+  color: rgb(58, 58, 121);
+}
+
 input#InpIntervalo {
  background-color: transparent;
  border-color: transparent;
@@ -267,7 +314,11 @@ function respOut() {
  RespBot.style.borderRadius = '0pt'
 }
 
-
+function atualizarValorRange() {
+  const intervalo = document.getElementById('intervalo');
+  const valorIntervalo = document.getElementById('valorIntervalo');
+  valorIntervalo.textContent = intervalo.value;
+}
 
 function calcular() {
  var _c = document.getElementById('capital').value
