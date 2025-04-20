@@ -90,7 +90,6 @@ a#_link {
 
 section#_s1 {
  width: 80%;
- max-width: 500px;
 
  background-color: #CCA52C; /*Ou rgba(200, 255, 0, 0.548)*/
  color: white;
@@ -153,6 +152,7 @@ input#capital {
 } */
 
 input#InpCapital { /*Label do preenchimento de dados sobre o capital do cliente*/
+ width: fit-content;
  background-color: transparent;
  border-color: transparent;
  border-radius: 20pt;
@@ -209,13 +209,19 @@ span#valorIntervalo {
   font: normal 13pt Arial;
   font-weight: 600;
   color: rgb(58, 58, 121);
+  margin: 0;
+  vertical-align: super;
 }
 
 input#InpIntervalo {
+ width: 165px;
+ margin: 0 !important;
  background-color: transparent;
  border-color: transparent;
  border-radius: 20pt;
  font-size: 18px;
+ text-align: left;
+ vertical-align: super;
  color: rgb(58, 58, 121);
 }
 
@@ -229,7 +235,8 @@ select#taxa {
 }
 
 input#taxa_pers {
- width: 115px;
+ width: 1105px !important;
+ background-color: green;
  margin-top: 2pt;
  color: rgb(58, 58, 121);
  background-color: rgb(240, 255, 187);
@@ -238,6 +245,7 @@ input#taxa_pers {
 }
 
 input#InpTaxa { /*Label do preenchimento de dados sobre o tempo que vai durar a taxa do cliente*/
+ width: 188px;
  background-color: transparent;
  border-color: transparent;
  border-radius: 20pt;
